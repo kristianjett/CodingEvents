@@ -1,18 +1,12 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
-<h1>Delete Events</h1>
+﻿<h1>Delete Events</h1>
 
 <form method="post">
     @foreach (Event codeEvent in ViewBag.events)
     {
-        <div>
+        <div class="form-group">
             <label>
                 <span>@codeEvent.Name</span>
-                <input type="checkbox" name="eventIds" value="@codeEvent.Id" />
+                <input type="checkbox" name="eventIds" value="@codeEvent.Id" class="form-control"/>
             </label>
         </div>
     }
