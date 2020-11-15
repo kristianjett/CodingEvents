@@ -1,11 +1,17 @@
-﻿<h1>Add Event</h1>
+﻿
+@using CodingEvents.ViewModels;
+@model AddEventViewModel;
 
-<div class="form-group">
-    <form method="post">
-        <label for="eventName">Event Name</label>
-        <input name="name" type="text" placeholder="Event Name" id="eventName" />
-        <label for"eventDescription">Event Description</label>
-        <input name="description" type="text" placeholder="Event Description" id="eventDescription" />
+<h1>Add Event</h1>
+
+<form method="post">
+    <div asp-controller="Events" asp-action="Add" class="form-group">
+        <label asp-for="Name">Event Name</label>
+        <input asp-for="Name" placeholder="Event Name" />
+    </div>
+    <div asp-controller="Events" asp-action="Add" class="form-group">
+        <label asp-for="Description">Event Description</label>
+        <input asp-for="Description" placeholder="Event Description" />
+    </div>
         <input type="submit" value="Add Event" />
-    </form>
-</div>
+</form>
