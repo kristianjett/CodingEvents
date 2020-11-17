@@ -36,6 +36,8 @@ namespace CodingEvents.Controllers
                 {
                     Name = addEventViewModel.Name,
                     Description = addEventViewModel.Description,
+                    Location = addEventViewModel.Location,
+                    AttendanceLimit = addEventViewModel.AttendanceLimit,
                     ContactEmail = addEventViewModel.ContactEmail
                 };
 
@@ -50,8 +52,8 @@ namespace CodingEvents.Controllers
 
         public IActionResult Delete()
         {
-            ViewBag.events = EventData.GetAll();
-            return View();
+            List<Event> deletableEvents = new List<Event>(EventData.GetAll());
+            return View(deletableEvents);
         }
 
         [HttpPost]
@@ -68,16 +70,19 @@ namespace CodingEvents.Controllers
         [Route("/events/edit/{eventId}")]
         public IActionResult Edit(int eventId)
         {
-            ViewBag.eventToEdit = EventData.GetById(eventId);
-            return View();
+            Event eventToEdit = EventData.GetById(eventId);
+            return View(eventToEdit);
         }
 
         [HttpPost("/Events/Edit")]
-        public IActionResult SubmitEditEventForm(int eventId, string name, string description)
+        public IActionResult SubmitEditEventForm(int eventId, string name, string description, string location, int attendanceLimit, string contactEmail)
         {
             //TODO add controller code
             EventData.GetById(eventId).Name = name;
             EventData.GetById(eventId).Description = description;
+            EventData.GetById(eventId).Location = location;
+            EventData.GetById(eventId).AttendanceLimit = attendanceLimit;
+            EventData.GetById(eventId).ContactEmail = contactEmail;
 
             return Redirect("/Events");
         }

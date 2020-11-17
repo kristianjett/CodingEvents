@@ -1,12 +1,22 @@
-﻿<h1>Edit Event</h1>
+﻿@using CodingEvents.Models
+
+@model Event 
+
+<h1>Edit Event</h1>
+
+@* todo - refactor to add validation to fields being edited & keep value (w/o displaying it?) if nothing is input *@
 
 <div>
     <form method="post" action="/events/edit">
-        <input type="hidden" value="@ViewBag.eventToEdit.Id" name="eventId"/>
+        <input type="hidden" value="@Model.Id" name="eventId" />
         <label for="eventName">Event Name</label>
-        <input name="name" type="text" placeholder="Event Name" id="eventName" />
-        <label for"eventDescription">Event Description</label>
-        <input name="description" type="text" placeholder="Event Description" id="eventDescription" />
+        <input name="name" type="text" value="@Model.Name" placeholder="Event Name" id="eventName" />
+        <label for="eventDescription">Event Description</label>
+        <input name="description" type="text" value="@Model.Description" placeholder="Event Description" id="eventDescription" />
+        <label for="eventLocation">Event Location</label>
+        <input name="location" type="text" value="@Model.Location" placeholder="Event Location" id="eventLocation" />
+        <label for="attendanceLimit">Attendance Limit</label>
+        <input name="attendanceLimit" type="text" value="@Model.AttendanceLimit" placeholder="Attendance Limit" id="attendanceLimit" />
         <input type="submit" value="Edit Event" />
     </form>
 </div>

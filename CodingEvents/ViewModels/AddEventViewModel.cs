@@ -16,6 +16,13 @@ namespace CodingEvents.ViewModels
         [StringLength(500, ErrorMessage = "Description cannot exceed 500 characters")]
         public string Description { get; set; }
 
+        [Required(ErrorMessage ="Location is required")]
+        public string Location { get; set; }
+
+        [Required(ErrorMessage = "Max attendees is required")]
+        [Range(0, 100000, ErrorMessage = "Must have fewer than 100K attendees")]
+        public int AttendanceLimit { get; set; }
+
         [EmailAddress]
         public string ContactEmail { get; set; }
     }
