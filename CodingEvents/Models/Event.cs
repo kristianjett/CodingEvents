@@ -18,8 +18,6 @@ namespace CodingEvents.Models
 
         public Event()
         {
-            Id = nextId;
-            nextId++;
         }
 
         public Event(string name, string description, string location, int attendanceLimit, string contactEmail) : this()
