@@ -11,11 +11,19 @@ namespace CodingEvents.Controllers
 {
     public class EventsController : Controller
     {
+
+        private EventDbContext context;
+
+        public EventsController(EventDbContext dbContext)
+        {
+            context = dbContext;
+        }
+
         // Get: /<controller>/
         [HttpGet]
         public IActionResult Index()
         {
-            List<Event> events = new List<Event>(EventData.GetAll());
+            List<Event> events = context.Events.ToList();
 
             return View(events);
         }
@@ -42,7 +50,8 @@ namespace CodingEvents.Controllers
                     Type = addEventViewModel.Type
                 };
 
-                EventData.Add(newEvent);
+                context.Events.Add(newEvent);
+                context.SaveChanges();
 
                 return Redirect("/Events");
             }
@@ -53,7 +62,7 @@ namespace CodingEvents.Controllers
 
         public IActionResult Delete()
         {
-            List<Event> deletableEvents = new List<Event>(EventData.GetAll());
+            List<Event> deletableEvents = context.Events.ToList();
             return View(deletableEvents);
         }
 
@@ -62,30 +71,34 @@ namespace CodingEvents.Controllers
         {
             foreach (int eventId in eventIds)
             {
-                EventData.Remove(eventId);
+                //EventData.Remove(eventId);
+                Event eventToDelete = context.Events.Find(eventId);
+                context.Events.Remove(eventToDelete);
             }
 
-            return Redirect("/Events");
-        }
-
-        [Route("/events/edit/{eventId}")]
-        public IActionResult Edit(int eventId)
-        {
-            Event eventToEdit = EventData.GetById(eventId);
-            return View(eventToEdit);
-        }
-
-        [HttpPost("/Events/Edit")]
-        public IActionResult SubmitEditEventForm(int eventId, string name, string description, string location, int attendanceLimit, string contactEmail)
-        {
-            //TODO add controller code
-            EventData.GetById(eventId).Name = name;
-            EventData.GetById(eventId).Description = description;
-            EventData.GetById(eventId).Location = location;
-            EventData.GetById(eventId).AttendanceLimit = attendanceLimit;
-            EventData.GetById(eventId).ContactEmail = contactEmail;
+            context.SaveChanges();
 
             return Redirect("/Events");
         }
+
+        //[Route("/events/edit/{eventId}")]
+        //public IActionResult Edit(int eventId)
+        //{
+        //    Event eventToEdit = EventData.GetById(eventId);
+        //    return View(eventToEdit);
+        //}
+
+        //[HttpPost("/Events/Edit")]
+        //public IActionResult SubmitEditEventForm(int eventId, string name, string description, string location, int attendanceLimit, string contactEmail)
+        //{
+        //    //TODO add controller code
+        //    EventData.GetById(eventId).Name = name;
+        //    EventData.GetById(eventId).Description = description;
+        //    EventData.GetById(eventId).Location = location;
+        //    EventData.GetById(eventId).AttendanceLimit = attendanceLimit;
+        //    EventData.GetById(eventId).ContactEmail = contactEmail;
+
+        //    return Redirect("/Events");
+        //}
     }
 }
