@@ -12,15 +12,15 @@ namespace CodingEvents.Models
         public string Location { get; set; }
         public int AttendanceLimit { get; set; }
         public string ContactEmail { get; set; }
+        public EventType Type { get; set; }
 
-        public int Id { get; }
-        private static int nextId = 1;
+        public int Id { get; set; }
 
         public Event()
         {
         }
 
-        public Event(string name, string description, string location, int attendanceLimit, string contactEmail) : this()
+        public Event(string name, string description, string location, int attendanceLimit, string contactEmail)
         {
             Name = name;
             Description = description;
