@@ -1,0 +1,19 @@
+﻿@using CodingEvents.Models
+
+@model List<EventCategory>
+
+<h1>Delete Categories</h1>
+
+<form method="post">
+    @foreach (EventCategory category in Model)
+    {
+        <div class="form-group">
+            <label>
+                <span>@category.Name</span>
+                <input type="checkbox" name="eventIds" value="@category.Id" class="form-control" />
+            </label>
+        </div>
+    }
+
+    <input type="submit" name="Delete Selected Categories" class="btn btn-danger" />
+</form>

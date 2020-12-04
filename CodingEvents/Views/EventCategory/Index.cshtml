@@ -4,6 +4,16 @@
 
 <h1>Event Categories</h1>
 
+<p>
+    <a asp-controller="EventCategory" asp-action="Create">Add Category</a>
+</p>
+@if (Model.Count > 0)
+{
+    <p>
+        <a asp-controller="EventCategory" asp-action="Delete">Delete Category</a>
+    </p>
+}
+
 @if (Model.Count == 0)
 {
     <p>Nothing to see here!</p>
