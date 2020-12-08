@@ -12,7 +12,8 @@ namespace CodingEvents.Models
         public string Location { get; set; }
         public int AttendanceLimit { get; set; }
         public string ContactEmail { get; set; }
-        public EventType Type { get; set; }
+        public EventCategory Category { get; set; }
+        public int CategoryId { get; set; }
 
         public int Id { get; set; }
 
