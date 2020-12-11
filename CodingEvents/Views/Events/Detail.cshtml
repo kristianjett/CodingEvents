@@ -3,7 +3,8 @@
 <h1>@Model.Name</h1>
 
 <table class="table">
-    <tr>Description
+    <tr>
+        Description
         <td>Description</td>
         <td>@Model.Description</td>
     </tr>
@@ -15,4 +16,10 @@
         <td>Category</td>
         <td>@Model.CategoryName</td>
     </tr>
+    <tr>
+        <td>Tags</td>
+        <td>@Model.TagText</td>
+    </tr>
 </table>
+
+<a asp-controller="Tag" asp-action="AddEvent" asp-route-id="@Model.EventId">Add Tag</a>

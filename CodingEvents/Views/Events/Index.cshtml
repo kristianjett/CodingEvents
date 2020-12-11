@@ -27,24 +27,17 @@ else
             <th>Event</th>
             <th>Description</th>
             <th>Location</th>
-            <th>Max Attendees</th>
-            <th>Contact Email</th>
             <th>Category</th>
         </tr>
         @foreach (Event codeEvent in Model)
         {
-
-    <tr>
-        <td style="font-weight: bold">@codeEvent.Id</td>
-        <td style="font-weight: bold">@codeEvent.Name</td>
-        <td style="font-weight: lighter">@codeEvent.Description</td>
-        <td style="font-weight: lighter">@codeEvent.Location</td>
-        <td style="font-weight: lighter">@codeEvent.AttendanceLimit</td>
-        <td style="font-weight: lighter">@codeEvent.ContactEmail</td>
-        <td style="font-weight: lighter">@codeEvent.Category.Name</td>
-        @*<td><a asp-controller="Events" asp-action="Edit" asp-route-id="@codeEvent.Id">Edit Event</a></td>*@
-
-    </tr>
+            <tr>
+                <td>@codeEvent.Id</td>
+                <td><a asp-controller="Events" asp-action="Detail" asp-route-id="@codeEvent.Id">@codeEvent.Name</a></td>
+                <td>@codeEvent.Description</td>
+                <td>@codeEvent.Location</td>
+                <td>@codeEvent.Category.Name</td>
+            </tr>
         }
     </table>
 }
