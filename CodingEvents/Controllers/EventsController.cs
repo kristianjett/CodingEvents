@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using CodingEvents.Data;
 using CodingEvents.Models;
 using CodingEvents.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CodingEvents.Controllers
 {
+    [Authorize]
     public class EventsController : Controller
     {
 
@@ -20,6 +22,7 @@ namespace CodingEvents.Controllers
             context = dbContext;
         }
 
+        [AllowAnonymous]
         // Get: /<controller>/
         [HttpGet]
         public IActionResult Index()
